@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
-public class CountHovers : MonoBehaviour
+
+public class CountHovers : MonoBehaviour, IPointerEnterHandler
 {
-    Ray ray;
-    RaycastHit hit;
+    public TextMeshProUGUI textcomponent;
+    float currentNumber = 0;
 
-    void Update()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            print(hit.collider.name);
-        }
+        Debug.Log("Mouse enter");
+        currentNumber += 1;
+        textcomponent.text = currentNumber.ToString();
     }
+
 }
+
+
